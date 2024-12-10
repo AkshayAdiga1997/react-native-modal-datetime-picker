@@ -48,6 +48,7 @@ export class DateTimePickerModal extends React.PureComponent {
     onHide: PropTypes.func,
     maximumDate: PropTypes.instanceOf(Date),
     minimumDate: PropTypes.instanceOf(Date),
+    cancelButtonBackgroundColor: PropTypes.string
   };
 
   static defaultProps = {
@@ -127,6 +128,7 @@ export class DateTimePickerModal extends React.PureComponent {
       onHide,
       backdropStyleIOS,
       buttonTextColorIOS,
+      cancelButtonBackgroundColor,
       ...otherProps
     } = this.props;
     const isAppearanceModuleAvailable = !!(
@@ -211,6 +213,7 @@ export class DateTimePickerModal extends React.PureComponent {
           onPress={this.handleCancel}
           label={cancelTextIOS}
           buttonTextColorIOS={buttonTextColorIOS}
+          cancelButtonBackgroundColor={cancelButtonBackgroundColor}
         />
       </Modal>
     );
@@ -308,6 +311,7 @@ export const CancelButton = ({
   onPress,
   label,
   buttonTextColorIOS,
+  cancelButtonBackgroundColor,
   style = cancelButtonStyles,
 }) => {
   const themedButtonStyle = isDarkModeEnabled
@@ -319,7 +323,7 @@ export const CancelButton = ({
   return (
     <TouchableHighlight
       testID={cancelButtonTestID}
-      style={[themedButtonStyle, style.button]}
+      style={[themedButtonStyle, style.button, {backgroundColor: cancelButtonBackgroundColor}]}
       underlayColor={underlayColor}
       onPress={onPress}
       accessible={true}
